@@ -69,8 +69,8 @@ def main():
                  time.sleep(0.5)
 
             if recognized_gesture == "Victory":
-                 pyautogui.press('right')
-                 time.sleep(0.5)
+                pyautogui.press('right')
+                time.sleep(0.5)
 
             if recognized_gesture == "ILoveYou":
                  pyautogui.press('space')
