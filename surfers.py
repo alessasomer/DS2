@@ -11,7 +11,8 @@ import time
 import pyautogui
 
 # Path to the gesture recognition model
-model_path = "/Users/williamiorio/CS376/DS2/gesture_recognizer.task"
+#model_path = "/Users/williamiorio/CS376/DS2/gesture_recognizer.task"
+model_path = "gesture_recognizer.task"
 
 # Initialize the Gesture Recognizer
 options = GestureRecognizerOptions(
