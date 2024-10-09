@@ -63,7 +63,7 @@ def recognize_gestures(hand_landmarks):
             ring_mcp.y < ring_tip.y and
             pinky_mcp.y < pinky_tip.y and
             #thumb is extended
-            abs(thumb_tip.x - pinky_mcp.x) > 0.2 and
+            abs(thumb_tip.x - pinky_mcp.x) > 0.15 and
             #index finger is not extended down
             (index_tip.y - index_mcp.y) < 0.2):
             return "Thumb_Left"
@@ -71,10 +71,10 @@ def recognize_gestures(hand_landmarks):
     #Thumb Right
     elif (thumb_tip.x > thumb_mcp.x and thumb_tip.x > pinky_tip.x):
         #remaining four fingers are tucked
-        if (index_mcp.y < index_tip.y and
-            middle_mcp.y < middle_tip.y and
-            ring_mcp.y < ring_tip.y and
-            pinky_mcp.y < pinky_tip.y and
+        if (abs(index_mcp.y - index_tip.y) < 0.15 and
+            abs(middle_mcp.y - middle_tip.y) < 0.15  and
+            abs(ring_mcp.y - ring_tip.y) < 0.15 and
+            abs(pinky_mcp.y - pinky_tip.y) < 0.15 and
             #index finger is not extended up
             (index_tip.y - index_mcp.y) < 0.2):
             return "Thumb_Right"
@@ -82,13 +82,13 @@ def recognize_gestures(hand_landmarks):
     #Point Down
     if index_tip.y > index_mcp.y:
         #remaining three fingers are tucked
-        if (middle_mcp.y < middle_tip.y and
-            ring_mcp.y < ring_tip.y and
-            pinky_mcp.y < pinky_tip.y and
+        if (abs(middle_mcp.y - middle_tip.y) < 0.2 and
+            abs(ring_mcp.y - ring_tip.y) < 0.2 and
+            abs (pinky_mcp.y - pinky_tip.y) < 0.2 and
             #pointer is extended
-            abs(index_mcp.y - index_tip.y) > 0.15 and
+            abs(index_mcp.y - index_tip.y) > 0.2 and
             #thumb is tucked
-            thumb_tip.x > thumb_mcp.x):
+            (thumb_tip.x - thumb_mcp.x) < 0.15):
             return "Point_Down"
     
     #Point Up
@@ -100,7 +100,7 @@ def recognize_gestures(hand_landmarks):
             #pointer is extended
             abs(index_mcp.y - index_tip.y) > 0.15 and
             #thumb is tucked
-            thumb_tip.x > thumb_mcp.x):
+            (thumb_tip.x - thumb_mcp.x) < 0.15):
             return "Point_Up"
         
     return None
